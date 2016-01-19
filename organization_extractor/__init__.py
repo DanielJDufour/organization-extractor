@@ -19,18 +19,31 @@ for filename in listdir(directory_of_patterns):
         pattern = re_compile(pattern_as_string, flags=flags)
         language_pattern[language] = pattern
 
+def flatten(lst):
+    result = []
+    for element in lst:
+        if hasattr(element, '__iter__'):
+            result.extend(flatten(element))
+        else:
+            result.append(element)
+    return result
+
+
 def extract_organizations(text, language=None):
 
     if isinstance(text, str):
         text = text.decode("utf-8")
 
-    organizations = []
+    organizations = set()
     if language:
         pass
     else:
 
         for pattern in language_pattern.values():
-            organizations += findall(pattern, text)
+            organizations.update(flatten(findall(pattern, text)))
+
+    organizations = [org for org in list(organizations) if org]
+
     return organizations
 
 def extract_organization(text):

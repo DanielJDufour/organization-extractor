@@ -16,9 +16,11 @@ class TestMethods(unittest.TestCase):
  
     def test2(self):
         text = "Before she joined the Outerspace Group and then Mars University, she worked for NASA and ..."
+        print "\ntext is", text
         organizations = extract_organizations(text)
         print "extracted orgnizations is", organizations
-        self.assertEqual(organizations, ["Outerspace Group","NASA"])
+        self.assertTrue("Outerspace Group" in organizations)
+        self.assertTrue("Mars University" in organizations)
         
     def testArabic1(self):
         text = """
