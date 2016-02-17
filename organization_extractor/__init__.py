@@ -49,4 +49,12 @@ def extract_organizations(text, language=None):
 def extract_organization(text):
     return extract_organizations(text)[0]
 
+def get_keywords():
+    directory_of_keywords = directory_of_this_file + "/prep/keywords"
+    language_keywords = {}
+    for filename in listdir(directory_of_keywords):
+        language = filename.split(".")[0]
+        with open(directory_of_keywords + "/" + language + ".txt") as f:
+            language_keywords[language] = f.read().decode("utf-8").strip().splitlines()
+    return language_keywords
 eo=extract_organizations

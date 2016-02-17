@@ -29,5 +29,12 @@ class TestMethods(unittest.TestCase):
         organization = extract_organization(text)
         self.assertEqual(organization, """الأكاديمية السلوفينية للعلوم والفنون""".decode("utf-8"))
 
+    def testArabicWal(self):
+        # translates to army of the thing and the thing
+        # we use this to test wal
+        text = u"\u062c\u064a\u0634 \u0627\u0644\u0634\u064a\u0621 \u0648\u0627\u0644\u0634\u064a\u0621"
+        organization = extract_organization(text)
+        self.assertEqual(organization, text)
+
 if __name__ == '__main__':
     unittest.main()

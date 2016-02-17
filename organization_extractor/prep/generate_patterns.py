@@ -53,7 +53,9 @@ language_org_pattern['English'] = org
 ##########################################
 keyword = language_keyword_pattern['Arabic']
 print "keyword is", keyword
-pattern = u"(?:" + keyword + u"(?: (?:(?:\u0627\u0644[^ .,\u060c\n\r<\"]*)|\u0641\u064a|(?:\u0628[^ .,\u060c\n\r<\"]*)))+)"
+# \u0648 is waw and used to match when the name is like group of the thing and the other thing thing
+# it will also incidentally match group and the person, but we'll have to see if this construct is actually an issue
+pattern = u"(?:" + keyword + u"(?: (?:(?:\u0648?\u0627\u0644[^ .,\u060c\n\r<\"]*)|\u0641\u064a|(?:\u0628[^ .,\u060c\n\r<\"]*)))+)"
 language_org_pattern['Arabic'] = pattern
 
 
