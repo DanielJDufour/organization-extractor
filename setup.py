@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
   name = 'organization-extractor',
   packages = ['organization_extractor'],
-  version = '2.2',
+  version = '2.3',
   description = 'Extracts organizations from text',
   author = 'Daniel J. Dufour',
   author_email = 'daniel.j.dufour@gmail.com',
