@@ -36,13 +36,15 @@ def extract_organizations(text, language=None):
 
     organizations = set()
     if language:
-        pass
+
+        organizations.update(flatten(findall(language_pattern[language], text)))
+
     else:
 
         for pattern in language_pattern.values():
             organizations.update(flatten(findall(pattern, text)))
 
-    organizations = [org for org in list(organizations) if org]
+    organizations = [org for org in list(organizations) if org and org.count(" ") > 0]
 
     return organizations
 

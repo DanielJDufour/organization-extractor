@@ -36,5 +36,15 @@ class TestMethods(unittest.TestCase):
         organization = extract_organization(text)
         self.assertEqual(organization, text)
 
+    def testFlag(self):
+        text = "Flag of Pluto Group"
+        organization = extract_organization(text)
+        self.assertEqual("Pluto Group", organization)
+
+    def testStartLower(self):
+        text = "amount of Cool Party"
+        organization = extract_organization(text)
+        self.assertEqual("Cool Party", organization)
+
 if __name__ == '__main__':
     unittest.main()
