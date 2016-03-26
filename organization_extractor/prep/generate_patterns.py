@@ -45,7 +45,7 @@ aliases = "(?: ?\(" + alias + "(?: ?" + seperator + alias + ")*" + ")*"
 org = name + "(?: or " + name + ")?" + aliases
 
 # make sure doesn't start with flag, of, or lowercase character
-org = "(?!(?:Although|Coat|Current|Emblem|List|Flag|Hundreds|Logo|Millions|of|Politics|Thousands|[a-z]))" + org
+org = "(?!(?:About|After|Although|Coat|Current|Emblem|List|Flag|Hundreds|Logo|Millions|of|Politics|Thousands|[a-z]))" + org
 
 # make sure doesn't end with ...
 org = org + "(?<!(?:Logo|Flag|also| and))(?<!(?:als|[a-z]ly|[a-z]e[d|s]))"
@@ -65,7 +65,7 @@ print "keyword is", keyword
 #pattern = u"(?:" + keyword + u"(?: (?:(?:\u0648?\u0627\u0644[^ .,\u060c\n\r<\";]*)|\u0641\u064a|(?:\u0628[^ .,\u060c\n\r<\"\u200e;]*)))+)"
 
 # the negative look behind at the end makes sure it doesn't end in fee
-pattern = u"(?:" + keyword + u"(?: (?:(?:\u0648?\u0627\u0644[^ .,\u060c\n\r<\";]*)|\u0641\u064a|(?:\u0628[^ .,\u060c\n\r<\"\u200e;]*)))+)(?<!\u0641\u064a)"
+pattern = u"(?:" + keyword + u"(?: (?:(?:\u0648?\u0627\u0644[^)( .,\u060c\n\r<\";\u200e]*)|\u0641\u064a|(?:\u0628[^)( .,\u060c\n\r<\"\u200e;]*)))+)(?<!\u0641\u064a)"
 language_org_pattern['Arabic'] = pattern
 
 

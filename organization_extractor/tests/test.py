@@ -11,14 +11,11 @@ class TestMethods(unittest.TestCase):
     def test1(self):
         text = "In the year of 2050, he attended the Mars University."
         organization = extract_organization(text)
-        print "extracted orgnization is", organization
         self.assertEqual(organization, "Mars University")
  
     def test2(self):
         text = "Before she joined the Outerspace Group and then Mars University, she worked for NASA and ..."
-        print "\ntext is", text
         organizations = extract_organizations(text)
-        print "extracted orgnizations is", organizations
         self.assertTrue("Outerspace Group" in organizations)
         self.assertTrue("Mars University" in organizations)
         
@@ -45,6 +42,14 @@ class TestMethods(unittest.TestCase):
         text = "amount of Cool Party"
         organization = extract_organization(text)
         self.assertEqual("Cool Party", organization)
+
+    def testArabicEndings(self):
+        text = u"""
+ (\u0627\u0644\u062d\u0631\u0643\u0629 \u0627\u0644\u0648\u0637\u0646\u064a\u0629 \u0627\u0644\u0634\u0639\u0628\u064a\u0629 \u0627\u0644\u0644\u064a\u0628\u064a\u0629\u200e)" src
+        """
+        organization = extract_organization(text)
+        self.assertEqual(u"\u0627\u0644\u062d\u0631\u0643\u0629 \u0627\u0644\u0648\u0637\u0646\u064a\u0629 \u0627\u0644\u0634\u0639\u0628\u064a\u0629 \u0627\u0644\u0644\u064a\u0628\u064a\u0629", organization)
+        
 
 if __name__ == '__main__':
     unittest.main()
