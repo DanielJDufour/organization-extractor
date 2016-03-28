@@ -38,14 +38,14 @@ seperator = u"(?:, |,|\u200E|\u200E | \u200E| \u200E | or |;|; ){1,3}"
 upper = u"[^\W\d_b-z:\u0621-\u06ff]"
 lower = u"(?:[^\W\d_A-Z:\u0621-\u06ff]|')"
 acronym = upper + u'{2,}'
-titled = u"(?:\d+(?:st|nd|th)[ ])?(?:al-|ash-|ath-|bin |of |of the |wal-|wa-)?" + upper + lower + "{2,}(?:(?: |-i-)(?:al-|ash-|ath-|bin |of |of the |wal-|wa-)?"+upper+lower+"{2,})*"
+titled = u"(?:\d+(?:st|nd|th)[ ])?(?:al-|ash-|ath-|bin |of |of the |wal-|wa-|Non-|on |for )?" + upper + lower + "{2,}(?:(?: |-i-)(?:al-|ash-|ath-|bin |of |of the |wal-|wa-|Non-|on |for )?"+upper+lower+"{2,})*"
 alias = u"(?:(?:"+upper+lower+"{3,}: ?|meaning\")?" + "("+titled+")" + "|" + '('+acronym+')' +  ")"
 name = u"((?:"+titled+" )*" + keyword + "(?: "+titled+")*)" + citation
 aliases = "(?: ?\(" + alias + "(?: ?" + seperator + alias + ")*" + ")*"
 org = name + "(?: or " + name + ")?" + aliases
 
 # make sure doesn't start with flag, of, or lowercase character
-org = "(?!(?:About|After|Although|Coat|Current|Emblem|List|Flag|Hundreds|Logo|Millions|of|Politics|Thousands|[a-z]))" + org
+org = "(?!(?:About|After|Although|Chairperson|Coat|Current|Emblem|List|Flag|Hundreds|Logo|Millions|of|Politics|Thousands|[a-z]))" + org
 
 # make sure doesn't end with ...
 org = org + "(?<!(?:Logo|Flag|also| and))(?<!(?:als|[a-z]ly|[a-z]e[d|s]))"

@@ -50,6 +50,20 @@ class TestMethods(unittest.TestCase):
         organization = extract_organization(text)
         self.assertEqual(u"\u0627\u0644\u062d\u0631\u0643\u0629 \u0627\u0644\u0648\u0637\u0646\u064a\u0629 \u0627\u0644\u0634\u0639\u0628\u064a\u0629 \u0627\u0644\u0644\u064a\u0628\u064a\u0629", organization)
         
+    def testSlash(self):
+        text = u"""He was a member of the Non-Aligned Movement."""
+        organization = extract_organization(text)
+        self.assertEqual("Non-Aligned Movement", organization)
+
+    def testOn(self):
+        text = u"The Court on Transitional Issues is located somewhere."
+        organization = extract_organization(text)
+        self.assertEqual("The Court on Transitional Issues", organization)
+
+    def testFor(self):
+        text = u"I work for the International Institute for Migration."
+        organization = extract_organization(text)
+        self.assertEqual("International Institute for Migration", organization)
 
 if __name__ == '__main__':
     unittest.main()
