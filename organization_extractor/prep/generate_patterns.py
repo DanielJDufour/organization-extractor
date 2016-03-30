@@ -62,10 +62,24 @@ keyword = language_keyword_pattern['Arabic']
 print "keyword is", keyword
 # \u0648 is waw and used to match when the name is like group of the thing and the other thing thing
 # it will also incidentally match group and the person, but we'll have to see if this construct is actually an issue
-#pattern = u"(?:" + keyword + u"(?: (?:(?:\u0648?\u0627\u0644[^ .,\u060c\n\r<\";]*)|\u0641\u064a|(?:\u0628[^ .,\u060c\n\r<\"\u200e;]*)))+)"
 
 # the negative look behind at the end makes sure it doesn't end in fee
-pattern = u"(?:" + keyword + u"(?: (?:(?:\u0648?\u0627\u0644[^)( .,\u060c\n\r<\";\u200e]*)|\u0641\u064a|(?:\u0628[^)( .,\u060c\n\r<\"\u200e;]*)))+)(?<!\u0641\u064a)"
+al = u"\u0627\u0644"
+bi = u"\u0628"
+wa = u"\u0648"
+
+# can't do [A-Za-z] because those are English not Arabic letters!
+letter = u"[^)( .,\u060c\n\r<\";\u200e]"
+letters = letter + u"{3,15}"
+fee = u"\u0641\u064a"
+
+# nisba is a word that doesn't start with al and ends with ee or eeya
+nisba = u"(?:(?<!=\u0627\u0644)" + letters + u"\u064a\u0627?)"
+
+# idafa is a word that starts with al
+idafa = al + letters
+word = u"(?:(?:" + wa + "?" + idafa + ")|" + fee + "|(?:" + bi + letters + "|" + nisba + "))"
+pattern = u"(?:" + keyword + u"(?: " + word + ")+)(?<!" + fee + ")"
 language_org_pattern['Arabic'] = pattern
 
 

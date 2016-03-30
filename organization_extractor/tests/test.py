@@ -25,6 +25,12 @@ class TestMethods(unittest.TestCase):
         """.decode("utf-8")
         organization = extract_organization(text)
         self.assertEqual(organization, """الأكاديمية السلوفينية للعلوم والفنون""".decode("utf-8"))
+    
+    def testArabic2(self):
+        text = u"\u0644\u062d\u0632\u0628 \u0633\u0648\u0631\u064a\u0627 \u0627\u0644\u0648\u0637\u0646"
+        #text = u"\u062d\u0632\u0628 \u0633\u0648\u0631\u064a\u0627 \u0627\u0644\u0648\u0637\u0646"
+        organization = extract_organization(text)
+        self.assertEqual(organization, u"\u062d\u0632\u0628 \u0633\u0648\u0631\u064a\u0627 \u0627\u0644\u0648\u0637\u0646")
 
     def testArabicWal(self):
         # translates to army of the thing and the thing
